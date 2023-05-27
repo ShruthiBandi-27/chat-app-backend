@@ -3,6 +3,7 @@ import User from '../models/userModel.js';
 import { generateToken } from '../config/generateToken.js';
 import { generatePassword } from '../config/generatePassword.js';
 import bcrypt from 'bcrypt';
+import { auth } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -73,5 +74,22 @@ router.post("/login", async (req, res) => {
      //res.status(200).send({message: "Successful Login!!!"})
 })
 
+//Search users
+router.get("/allUsers", auth, async (req, res) => {
+    // const {user} = req.query;
+    console.log(`searched user: ${req.user}}`);
+
+    const keyword = req.query.search ? {
+        $or: [
+            {name: {$regex: req.query.search, $options: "i"}},
+            {email: {$regex: req.query.search, $options: "i"}},
+        ],
+    } 
+    : {}
+
+    //const users = await User.find(keyword);
+    const users = await User.find({...keyword,_id: {$ne: req.user._id}});
+    res.send(users);
+})
 
 export const userRoutes = router;
