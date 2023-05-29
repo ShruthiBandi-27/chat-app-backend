@@ -51,7 +51,6 @@ router.get("/fetchMessages/:chatId", auth, async (req, res) => {
     }
     catch (error) {
         res.status(400).send(`Error occurred while fetching messages: {error}`);
-
     }
 })
 
