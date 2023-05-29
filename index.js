@@ -25,15 +25,6 @@ app.use('/api/user', userRoutes);
 app.use('/api/chat',chatRoutes);
 app.use('/api/message',messageRoutes);
 
-// app.get("/api/chat", (req, res) => {
-//     res.send(chats);
-// })
-
-// app.get("/api/chat/:id", (req, res) => {
-//     const singleChat = chats.find((ele) => ele._id===req.params.id)
-//     res.send(singleChat);
-//    // console.log(req.params.id);
-// })
 
 const server = app.listen(PORT, ()=> {
     console.log(`Server started on PORT ${PORT}`);
@@ -42,7 +33,7 @@ const server = app.listen(PORT, ()=> {
 const io = new Server(server, {
     pingTimeout: 60000,
     cors: {
-        origin: "http://localhost:3000",
+        origin: "https://64747ed59837776c3e41d385--stunning-crepe-ec7e54.netlify.app/",
     }
 })
 
