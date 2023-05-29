@@ -33,7 +33,7 @@ const server = app.listen(PORT, ()=> {
 const io = new Server(server, {
     pingTimeout: 60000,
     cors: {
-        origin: "https://64747ed59837776c3e41d385--stunning-crepe-ec7e54.netlify.app/",
+        origin: "https://stunning-crepe-ec7e54.netlify.app",
     }
 })
 
